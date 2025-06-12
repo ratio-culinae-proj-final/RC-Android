@@ -8,11 +8,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratioculinae.R;
 import com.example.ratioculinae.database.AppDatabase;
 import com.example.ratioculinae.models.Usuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText senhaField;
     private Button registerButton;
     private AppDatabase db;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +40,16 @@ public class CadastroActivity extends AppCompatActivity {
         senhaField = findViewById(R.id.etSenha);
         registerButton = findViewById(R.id.btnRegistrar);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        db = AppDatabase.getInstance(getApplicationContext());
+
         registerButton.setOnClickListener(v -> cadastrarUsuario());
     }
 
     private void cadastrarUsuario() {
-
-        db = AppDatabase.getInstance(getApplicationContext());
-
-        String nome = nomeField.getText().toString();
-        String email = emailField.getText().toString();
-        String senha = senhaField.getText().toString();
+        String nome = nomeField.getText().toString().trim();
+        String email = emailField.getText().toString().trim();
+        String senha = senhaField.getText().toString().trim();
 
         if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
@@ -62,30 +66,28 @@ public class CadastroActivity extends AppCompatActivity {
             return;
         }
 
-        String uuid = java.util.UUID.randomUUID().toString();
-        Usuario novoUsuario = new Usuario(uuid,nome,email,senha);
+        firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                        String uuid = firebaseUser != null ? firebaseUser.getUid() : java.util.UUID.randomUUID().toString();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+                        Usuario novoUsuario = new Usuario(uuid, nome, email);
 
-                Usuario userExistente = db.usuarioDAO().buscarPorEmail(email);
-                if (userExistente == null) {
-                    db.usuarioDAO().criarUsuario(novoUsuario);
-                    runOnUiThread(() -> {
-                        Toast.makeText(CadastroActivity.this,"Usuário cadastrado com sucesso!",Toast.LENGTH_LONG).show();
-
-                        Intent goToLoginPage = new Intent(CadastroActivity.this, LoginActivity.class);
-                        startActivity(goToLoginPage);
-
-                        finish();
-                    });
-                } else {
-                    runOnUiThread(() -> {
-                        Toast.makeText(CadastroActivity.this, "Email já cadastrado. Faça o login!", Toast.LENGTH_LONG).show();
-                    });
-                }
-            }
-        }).start();
+                        new Thread(() -> {
+                            Usuario existente = db.usuarioDAO().buscarPorEmail(email);
+                            if (existente == null) {
+                                db.usuarioDAO().criarUsuario(novoUsuario);
+                            }
+                            runOnUiThread(() -> {
+                                Toast.makeText(CadastroActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+                                finish();
+                            });
+                        }).start();
+                    } else {
+                        Toast.makeText(CadastroActivity.this, "Erro ao cadastrar: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }

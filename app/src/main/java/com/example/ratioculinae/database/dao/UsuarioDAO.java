@@ -14,5 +14,4 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM tab_users WHERE email = :email LIMIT 1")
     Usuario buscarPorEmail(String email);
 
-
 }
