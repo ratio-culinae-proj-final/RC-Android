@@ -36,12 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
         senhaField = findViewById(R.id.etSenha);
         registerButton = findViewById(R.id.btnRegistrar);
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cadastrarUsuario();
-            }
-        });
+        registerButton.setOnClickListener(v -> cadastrarUsuario());
     }
 
     private void cadastrarUsuario() {
@@ -52,8 +47,22 @@ public class CadastroActivity extends AppCompatActivity {
         String email = emailField.getText().toString();
         String senha = senhaField.getText().toString();
 
-        String uuid = java.util.UUID.randomUUID().toString();
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+            Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        if (!email.contains("@")) {
+            Toast.makeText(this, "Digite um e-mail válido!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (senha.length() < 8) {
+            Toast.makeText(this, "A senha deve ter no mínimo 8 caracteres!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String uuid = java.util.UUID.randomUUID().toString();
         Usuario novoUsuario = new Usuario(uuid,nome,email,senha);
 
         new Thread(new Runnable() {
@@ -76,7 +85,6 @@ public class CadastroActivity extends AppCompatActivity {
                         Toast.makeText(CadastroActivity.this, "Email já cadastrado. Faça o login!", Toast.LENGTH_LONG).show();
                     });
                 }
-
             }
         }).start();
     }
