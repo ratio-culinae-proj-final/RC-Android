@@ -1,6 +1,7 @@
 package com.example.ratioculinae.screens;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratioculinae.R;
+import com.example.ratioculinae.database.AppDatabase;
+import com.example.ratioculinae.models.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -18,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailField;
     private EditText senhaField;
     private Button loginButton;
-    private Button irParaCadastroButton;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -38,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(v -> realizarLogin());
-
     }
 
     private void realizarLogin() {
@@ -54,14 +55,36 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
-                        Toast.makeText(LoginActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
-                        Intent goToHomePage = new Intent(LoginActivity.this, HomePageActivity.class);
-                        startActivity(goToHomePage);
-                        finish();
+                        if (user != null) {
+                            String userEmail = user.getEmail();
+                            buscarUsuarioNoRoomESalvarUUID(userEmail);
+                        }
                     } else {
-                        Toast.makeText(LoginActivity.this, "Falha no login: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Falha no login: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private void buscarUsuarioNoRoomESalvarUUID(String email) {
+        new Thread(() -> {
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+            Usuario usuario = db.usuarioDAO().buscarPorEmail(email);
+
+            if (usuario != null) {
+                SharedPreferences prefs = getSharedPreferences("app_prefs", MODE_PRIVATE);
+                prefs.edit().putString("uuid", usuario.uuid).apply();
+
+                runOnUiThread(() -> {
+                    Toast.makeText(LoginActivity.this, "Login realizado com sucesso!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
+                    finish();
+                });
+            } else {
+                runOnUiThread(() ->
+                        Toast.makeText(LoginActivity.this, "Usuário não encontrado no banco local!", Toast.LENGTH_LONG).show()
+                );
+            }
+        }).start();
     }
 }

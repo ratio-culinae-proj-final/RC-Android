@@ -1,17 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.HomePageActivity">
+    android:background="#FFF8EE">
+
+    <!-- Logo do chef + livro -->
+
+    <!-- Título Ratio Culinae -->
+
+    <!-- Linha laranja -->
+
+    <!-- Texto de boas-vindas -->
+
+    <!-- Subtítulo -->
+
+    <!-- Botão Gerenciar Ingredientes -->
+
+    <!-- Botão Gerador de Receitas -->
+
+    <!-- Botão Visualizar receitas salvas -->
+
+    <!-- Botão Temporizador fácil -->
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="201dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="105dp"
+        android:src="@mipmap/ic_ratio_culinae"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textTitulo"
+        android:layout_width="313dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="50dp"
+        android:text="RATIO CULINAE"
+        android:textAlignment="center"
+        android:textColor="#8B5E3C"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+    <View
+        android:id="@+id/linhaLaranja"
+        android:layout_width="319dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="46dp"
+        android:background="#FF8C00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBemVindo" />
+
+    <TextView
+        android:id="@+id/textBemVindo"
+        android:layout_width="315dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="17dp"
+        android:text="Bem vindo\nSanderson!"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
+
+    <TextView
+        android:id="@+id/textSelecione"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="iuri e sanderson sao newbas"
-        tools:layout_editor_absoluteX="116dp"
-        tools:layout_editor_absoluteY="106dp" />
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="98dp"
+        android:text="Selecione uma das opções abaixo"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linhaLaranja" />
+
+    <Button
+        android:id="@+id/btnIngredientes"
+        android:layout_width="319dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="48dp"
+        android:backgroundTint="#A26D3D"
+        android:padding="12dp"
+        android:text="Gerenciar Ingredientes"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textSelecione" />
+
+    <Button
+        android:id="@+id/btnGerador"
+        android:layout_width="326dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#A26D3D"
+        android:padding="12dp"
+        android:text="Gerador de receitas"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnIngredientes" />
+
+    <Button
+        android:id="@+id/btnVisualizar"
+        android:layout_width="326dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#A26D3D"
+        android:padding="12dp"
+        android:text="Visualizar receitas salvas"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGerador" />
+
+    <Button
+        android:id="@+id/btnTemporizador"
+        android:layout_width="322dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
+        android:backgroundTint="#A26D3D"
+        android:padding="12dp"
+        android:text="Temporizador fácil"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVisualizar"
+        app:layout_constraintWidth_percent="0.8" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

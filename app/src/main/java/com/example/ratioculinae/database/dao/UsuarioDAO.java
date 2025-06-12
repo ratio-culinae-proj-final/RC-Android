@@ -14,4 +14,7 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM tab_users WHERE email = :email LIMIT 1")
     Usuario buscarPorEmail(String email);
 
+    @Query("SELECT * FROM tab_users WHERE uuid = :uuid LIMIT 1")
+    Usuario getUsuarioByUuid(String uuid);
+
 }
