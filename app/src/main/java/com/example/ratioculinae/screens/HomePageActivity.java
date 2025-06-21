@@ -1,6 +1,5 @@
 package com.example.ratioculinae.screens;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -38,20 +37,19 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void carregarUsuarioLogado() {
-
         SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String uuid = preferences.getString("uuid", null);
 
         if (uuid != null) {
             new Thread(() -> {
-
                 AppDatabase db = AppDatabase.getInstance(getApplicationContext());
                 Usuario usuario = db.usuarioDAO().getUsuarioByUuid(uuid);
 
                 if (usuario != null) {
-                    runOnUiThread(() ->
-                            welcomeText.setText("Bem vindo\n" + usuario.nome + "!")
-                    );
+                    runOnUiThread(() -> {
+                        String saudacao = getString(R.string.welcome_message, usuario.nome);
+                        welcomeText.setText(saudacao);
+                    });
                 }
             }).start();
         }
@@ -59,19 +57,19 @@ public class HomePageActivity extends AppCompatActivity {
 
     private void configurarIntents() {
         btnIngredientes.setOnClickListener(v -> {
-            //startActivity(new Intent(this, IngredientesActivity.class));
+            // startActivity(new Intent(this, IngredientesActivity.class));
         });
 
         btnGerador.setOnClickListener(v -> {
-            //startActivity(new Intent(this, GeradorReceitasActivity.class));
+            // startActivity(new Intent(this, GeradorReceitasActivity.class));
         });
 
         btnVisualizar.setOnClickListener(v -> {
-            //startActivity(new Intent(this, VisualizarReceitasActivity.class));
+            // startActivity(new Intent(this, VisualizarReceitasActivity.class));
         });
 
         btnTemporizador.setOnClickListener(v -> {
-            //startActivity(new Intent(this, TemporizadorActivity.class));
+            // startActivity(new Intent(this, TemporizadorActivity.class));
         });
     }
 }

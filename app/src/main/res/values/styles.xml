@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tema principal do app -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Personalizações globais aqui -->
+    </style>
+
+    <!-- Estilo para título e subtitulo -->
+    <style name="Titulo">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Estilo para texto de botões -->
+    <style name="TextButton">
+        <item name="android:fontFamily">@font/raleway_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Estilo para corpo de texto -->
+    <style name="CorpoTexto">
+        <item name="android:fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

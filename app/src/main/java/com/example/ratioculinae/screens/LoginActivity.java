@@ -16,11 +16,12 @@ import com.example.ratioculinae.models.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailField;
     private EditText senhaField;
-    private Button loginButton;
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private void inicializarTelaLogin() {
         emailField = findViewById(R.id.emailLogin);
         senhaField = findViewById(R.id.senhaLogin);
-        loginButton = findViewById(R.id.login);
+        Button loginButton = findViewById(R.id.login);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                             buscarUsuarioNoRoomESalvarUUID(userEmail);
                         }
                     } else {
-                        Toast.makeText(this, "Falha no login: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Falha no login: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

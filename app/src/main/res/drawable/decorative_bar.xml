@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#FF8400" /> <!-- Cor laranja padrão -->
+    <corners android:radius="6dp" />  <!-- Leve arredondamento -->
+    <size android:height="6dp" />     <!-- Altura fixa da barra -->
+</shape>

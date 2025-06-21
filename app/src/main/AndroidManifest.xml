@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RatioCulinae"
         tools:targetApi="31">
         <activity
+            android:name=".screens.GenerateRecipesActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.HomePageActivity"
             android:exported="false" />
         <activity

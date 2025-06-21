@@ -2,13 +2,11 @@ package com.example.ratioculinae.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratioculinae.R;
@@ -17,14 +15,16 @@ import com.example.ratioculinae.models.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText nomeField;
     private EditText emailField;
     private EditText senhaField;
-    private Button registerButton;
     private AppDatabase db;
     private FirebaseAuth firebaseAuth;
+    private EditText confirmSenhaField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,8 @@ public class CadastroActivity extends AppCompatActivity {
         nomeField = findViewById(R.id.etNome);
         emailField = findViewById(R.id.etEmail);
         senhaField = findViewById(R.id.etSenha);
-        registerButton = findViewById(R.id.btnRegistrar);
+        Button registerButton = findViewById(R.id.btnRegistrar);
+        confirmSenhaField = findViewById(R.id.etConfirmSenha);
 
         firebaseAuth = FirebaseAuth.getInstance();
         db = AppDatabase.getInstance(getApplicationContext());
@@ -50,8 +51,9 @@ public class CadastroActivity extends AppCompatActivity {
         String nome = nomeField.getText().toString().trim();
         String email = emailField.getText().toString().trim();
         String senha = senhaField.getText().toString().trim();
+        String confirmSenha = confirmSenhaField.getText().toString().trim();
 
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || confirmSenha.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -63,6 +65,11 @@ public class CadastroActivity extends AppCompatActivity {
 
         if (senha.length() < 8) {
             Toast.makeText(this, "A senha deve ter no mínimo 8 caracteres!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!senha.equals(confirmSenha)) {
+            Toast.makeText(this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -86,7 +93,7 @@ public class CadastroActivity extends AppCompatActivity {
                             });
                         }).start();
                     } else {
-                        Toast.makeText(CadastroActivity.this, "Erro ao cadastrar: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(CadastroActivity.this, "Erro ao cadastrar: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
     }

@@ -1,8 +1,8 @@
 package com.example.ratioculinae.models;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.annotation.NonNull;
 
 @Entity(tableName = "tab_users")
 public class Usuario {
