@@ -29,13 +29,11 @@ public class MainActivity extends AppCompatActivity {
         cadastrarButton.setOnClickListener(v -> {
             Intent goToRegisterPage = new Intent(MainActivity.this, CadastroActivity.class);
             startActivity(goToRegisterPage);
-            finish();
         });
 
         loginButton.setOnClickListener(v -> {
             Intent goToLoginPage = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(goToLoginPage);
-            finish();
         });
 
     }
