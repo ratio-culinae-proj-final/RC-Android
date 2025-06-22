@@ -1,5 +1,6 @@
 package com.example.ratioculinae.screens;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         btnGerador.setOnClickListener(v -> {
-            // startActivity(new Intent(this, GeradorReceitasActivity.class));
+            startActivity(new Intent(this, GenerateRecipesActivity.class));
         });
 
         btnVisualizar.setOnClickListener(v -> {

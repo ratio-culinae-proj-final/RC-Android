@@ -3,6 +3,7 @@ package com.example.ratioculinae.database.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.ratioculinae.models.Usuario;
 
@@ -16,5 +17,8 @@ public interface UsuarioDAO {
 
     @Query("SELECT * FROM tab_users WHERE uuid = :uuid LIMIT 1")
     Usuario getUsuarioByUuid(String uuid);
+
+    @Update
+    void update(Usuario usuario);
 
 }

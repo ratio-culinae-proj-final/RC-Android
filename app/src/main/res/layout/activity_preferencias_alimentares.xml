@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#FFF9ED">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTituloPreferencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preferência Alimentar"
+        android:textColor="#000000"
+        style="@style/Titulo"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <!-- Barrinha laranja decorativa -->
+    <View
+        android:id="@+id/barraDecorativa"
+        android:layout_width="240dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloPreferencia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:id="@+id/subtituloLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista de preferências"
+        style="@style/Titulo"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/barraDecorativa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <!-- Layout com os CheckBoxes -->
+    <LinearLayout
+        android:id="@+id/layoutCheckboxes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#DCDCDC"
+        android:padding="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintTop_toBottomOf="@id/subtituloLista"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <CheckBox
+            android:id="@+id/checkboxVegetariano"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CorpoTexto"
+            android:text="Vegetariano"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkboxVegano"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CorpoTexto"
+            android:text="Vegano"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkboxSemGluten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CorpoTexto"
+            android:text="Sem Glúten"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkboxSemLactose"
+            android:layout_width="wrap_content"
+            style="@style/CorpoTexto"
+            android:layout_height="wrap_content"
+            android:text="Sem Lactose"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkboxDiabetico"
+            android:layout_width="wrap_content"
+            style="@style/CorpoTexto"
+            android:layout_height="wrap_content"
+            android:text="Diabético"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <!-- Botão Salvar -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSalvarPreferencias"
+        style="@style/TextButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_background_orange"
+        android:elevation="2dp"
+        android:text="Salvar"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutCheckboxes"
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

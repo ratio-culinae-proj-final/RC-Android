@@ -81,7 +81,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="60dp"
         style="@style/TextButton"
-        android:background="@drawable/rounded_orange"
+        android:background="@drawable/button_background_orange"
         android:text="Login"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
