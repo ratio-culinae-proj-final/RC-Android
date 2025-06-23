@@ -70,7 +70,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         btnTemporizador.setOnClickListener(v -> {
-            // startActivity(new Intent(this, TemporizadorActivity.class));
+            startActivity(new Intent(this, TemporizadorActivity.class));
         });
     }
 }
