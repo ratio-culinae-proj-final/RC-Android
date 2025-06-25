@@ -14,7 +14,7 @@ import java.util.List;
 public interface IngredienteDAO {
 
     @Insert
-    void insert(Ingrediente ingrediente);
+    long insert(Ingrediente ingrediente);
 
     @Query("SELECT * FROM tab_ingredientes")
     List<Ingrediente> listarIngredientes();

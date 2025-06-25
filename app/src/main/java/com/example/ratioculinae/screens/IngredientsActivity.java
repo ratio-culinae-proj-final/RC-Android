@@ -18,8 +18,8 @@ import java.util.List;
 
 public class IngredientsActivity extends AppCompatActivity {
 
-    private ListView ingredientes;
-    private Button adicionar, editar;
+    private ListView listViewIngredientes;
+    private Button btnAdicionar;
     private AppDatabase db;
 
     @Override
@@ -27,53 +27,46 @@ public class IngredientsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ingredients);
-        inicializarIngredientes();
-        configurarIntents();
 
+        inicializarComponentes();
+        configurarAcoes();
+        carregarIngredientes();
     }
 
-    private void manipularIngredientes() {
-        ingredientes.setOnItemClickListener((parent, view, position, id) -> {
-            Ingrediente selecionado = (Ingrediente) parent.getItemAtPosition(position);
-            Intent intent = new Intent(this, EditIngredientesActivity.class);
-            intent.putExtra("ingrediente_id", selecionado.getId());
-            startActivity(intent);});
-    };
+    private void inicializarComponentes() {
+        listViewIngredientes = findViewById(R.id.listIngredientes);
+        btnAdicionar = findViewById(R.id.btnAddIngredientes);
+        db = AppDatabase.getInstance(getApplicationContext());
+    }
 
-    private void configurarIntents() {
-        adicionar.setOnClickListener(v -> {
+    private void configurarAcoes() {
+        btnAdicionar.setOnClickListener(v -> {
             startActivity(new Intent(this, AddIngredientesActivity.class));
+        });
+
+        listViewIngredientes.setOnItemClickListener((parent, view, position, id) -> {
+            Ingrediente ingredienteSelecionado = (Ingrediente) parent.getItemAtPosition(position);
+            Intent intent = new Intent(this, EditIngredientesActivity.class);
+            intent.putExtra("ingrediente_id", ingredienteSelecionado.getId());
+            startActivity(intent);
         });
     }
 
-    private void inicializarIngredientes() {
-        adicionar = findViewById(R.id.btnAddIngredientes);
-        ingredientes = findViewById(R.id.listIngredientes);
-        db = AppDatabase.getInstance(getApplicationContext());
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                listar();
+    private void carregarIngredientes() {
+        new Thread(() -> {
+            List<Ingrediente> lista = db.ingredientesDAO().listarIngredientes();
+            for (Ingrediente i : lista) {
+                Log.d("DEBUG_INGREDIENTE", "ID: " + i.getId() + " NOME: " + i.getNome() + " QUANTIDADE: " + i.getQuantidade());
             }
+
+            runOnUiThread(() -> {
+                ArrayAdapter<Ingrediente> adapter = new ArrayAdapter<>(
+                        IngredientsActivity.this,
+                        R.layout.item_ingrediente,  // layout customizado
+                        lista
+                );
+                listViewIngredientes.setAdapter(adapter);
+            });
         }).start();
-    }
-
-    private void listar() {
-                List<Ingrediente> listagem = db.ingredientesDAO().listarIngredientes();
-                for (Ingrediente i: listagem) {
-                    Log.d("DEBUG_INGREDIENTE", "ID: " + i.getId() + " NOME: " + i.getNome() + " QUANTIDADE: " + i.getQuantidade());
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayAdapter<Ingrediente> adapter = new ArrayAdapter<>(IngredientsActivity.this,
-                                com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-                                listagem);
-                        ingredientes.setAdapter(adapter);
-                        manipularIngredientes();
-                    }
-                });
-
     }
 }

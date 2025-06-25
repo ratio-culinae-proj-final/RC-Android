@@ -2,27 +2,34 @@ package com.example.ratioculinae.screens;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import android.widget.ArrayAdapter;
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ratioculinae.R;
 import com.example.ratioculinae.database.AppDatabase;
+import com.example.ratioculinae.database.dao.UsuarioIngredienteDao;
+import com.example.ratioculinae.models.Ingrediente;
 import com.example.ratioculinae.models.Usuario;
 import com.example.ratioculinae.utils.UsuarioLogadoHelper;
 
 import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class GenerateRecipesActivity extends AppCompatActivity {
 
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch switchPreferencias;
     private Usuario usuario;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,8 @@ public class GenerateRecipesActivity extends AppCompatActivity {
         Button btnEditarPreferencias = findViewById(R.id.btnEditarPreferencias);
         Button btnBuscarReceitas = findViewById(R.id.btnBuscarReceitas);
         ListView listaIngredientes = findViewById(R.id.listaIngredientes);
+
+        db = AppDatabase.getInstance(getApplicationContext());
 
         carregarUsuario();
 
@@ -45,27 +54,70 @@ public class GenerateRecipesActivity extends AppCompatActivity {
     private void carregarUsuario() {
         Executors.newSingleThreadExecutor().execute(() -> {
             usuario = UsuarioLogadoHelper.getUsuarioLogado(this);
-            // Carregar a lista de ingredientes do usuário aqui
+
+            if (usuario != null) {
+                carregarIngredientesDoUsuario(usuario.uuid);
+            }
+        });
+    }
+
+    private void carregarIngredientesDoUsuario(String usuarioId) {
+        UsuarioIngredienteDao ingredienteDao = db.usuarioIngredienteDao();
+        List<Ingrediente> ingredientes = ingredienteDao.getIngredientesByUsuario(usuarioId);
+
+        List<String> nomesIngredientes = new ArrayList<>();
+        for (Ingrediente i : ingredientes) {
+            nomesIngredientes.add(i.getNome());
+        }
+
+        runOnUiThread(() -> {
+            ListView listaIngredientes = findViewById(R.id.listaIngredientes);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    nomesIngredientes
+            );
+            listaIngredientes.setAdapter(adapter);
         });
     }
 
     private void buscarReceitas() {
-        boolean usarPreferencias = switchPreferencias.isChecked();
-
-        String preferencias = null;
-        if (usarPreferencias && usuario != null) {
-            preferencias = usuario.getPreferenciasAlimentares();
+        if (usuario == null) {
+            Toast.makeText(this, "Usuário não carregado ainda.", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-        // Aqui você pode passar a string de preferências para a IA, LangChain, etc.
-        // Exemplo:
-        if (preferencias != null) {
-            // Enviar ingredientes + filtro para IA
-        } else {
-            // Enviar apenas ingredientes
-        }
+        Executors.newSingleThreadExecutor().execute(() -> {
+            UsuarioIngredienteDao ingredienteDao = db.usuarioIngredienteDao();
+            List<Ingrediente> ingredientesDoUsuario = ingredienteDao.getIngredientesByUsuario(usuario.uuid);
 
-        // Exemplo mock:
-        // mostrarReceitasNaTela(List<Receita> receitas);
+            if (ingredientesDoUsuario == null || ingredientesDoUsuario.isEmpty()) {
+                runOnUiThread(() -> Toast.makeText(this, "Nenhum ingrediente cadastrado.", Toast.LENGTH_SHORT).show());
+                return;
+            }
+
+            String ingredientesStr = ingredientesDoUsuario.stream()
+                    .map(Ingrediente::getNome)
+                    .collect(Collectors.joining(", "));
+
+            boolean usarPreferencias = switchPreferencias.isChecked();
+            String preferencias = null;
+
+            if (usarPreferencias && usuario.getPreferenciasAlimentares() != null) {
+                preferencias = usuario.getPreferenciasAlimentares();
+            }
+
+            String prompt;
+            if (preferencias != null && !preferencias.isEmpty()) {
+                prompt = ingredientesStr + ", " + preferencias;
+            } else {
+                prompt = ingredientesStr;
+            }
+
+            // Passar o prompt via Intent para SugestoesReceitasActivity
+            Intent intent = new Intent(GenerateRecipesActivity.this, SugestoesReceitasActivity.class);
+            intent.putExtra("ingredientes", prompt);
+            startActivity(intent);
+        });
     }
 }

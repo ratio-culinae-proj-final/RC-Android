@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF9ED"
-    android:padding="24dp">
+    android:padding="24dp"
+    tools:context=".screens.LoginActivity">
 
     <!-- Título -->
     <TextView
@@ -16,7 +17,6 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#000000"
-        style="@style/Titulo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,17 +30,22 @@
         app:layout_constraintTop_toBottomOf="@id/titleLogin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="35dp">
+        android:layout_marginTop="35dp"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLogin"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_gray"
-            style="@style/TextButton"
+            android:layout_height="wrap_content"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:paddingHorizontal="12dp"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Campo Senha -->
@@ -48,26 +53,31 @@
         android:id="@+id/textInputSenhaLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputEmailLogin"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="true"
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusBottomEnd="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/senhaLogin"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/rounded_gray"
+            android:layout_height="wrap_content"
             android:hint="Senha"
             android:inputType="textPassword"
-            style="@style/TextButton"
-            android:paddingHorizontal="12dp" />
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botão Entrar -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
-        style="@style/TextButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="Entrar"
@@ -87,10 +97,9 @@
         android:text="Não tem uma conta?"
         android:textSize="16sp"
         android:textColor="#000000"
-        style="@style/CorpoTexto"
         app:layout_constraintTop_toBottomOf="@id/login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="38dp" />
+        android:layout_marginTop="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

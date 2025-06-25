@@ -51,4 +51,8 @@ dependencies {
     implementation (libs.play.services.auth)
     implementation (libs.glide)
     implementation (libs.material)
+    implementation (libs.okhttp3.okhttp)
+    implementation (libs.json)
+    implementation(libs.okhttp.v4100)
+    implementation (libs.picasso)
 }
