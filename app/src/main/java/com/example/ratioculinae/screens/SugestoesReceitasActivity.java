@@ -2,6 +2,7 @@ package com.example.ratioculinae.screens;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.ratioculinae.R;
-import com.example.ratioculinae.utils.ReceitaAdapter;
 import com.example.ratioculinae.models.Receita;
+import com.example.ratioculinae.utils.ReceitaAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -34,7 +36,14 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private ReceitaAdapter receitaAdapter;
     private final ArrayList<Receita> listaReceitas = new ArrayList<>();
-    private final OkHttpClient client = new OkHttpClient();
+
+    // Configura o client com timeouts definidos
+    private final OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(10, TimeUnit.SECONDS)
+            .writeTimeout(10, TimeUnit.SECONDS)
+            .build();
+
     private final String urlAPI = "http://10.0.2.2:5000/sugerir_receitas";
 
     @Override
@@ -74,14 +83,16 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.e("API_ERROR", "Erro na requisição HTTP", e); // Mostra a stack trace no Logcat
                 runOnUiThread(() ->
-                        Toast.makeText(SugestoesReceitasActivity.this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(SugestoesReceitasActivity.this, "Erro: " + e.getMessage(), Toast.LENGTH_LONG).show()
                 );
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()) {
+                    Log.e("API_ERROR", "Resposta HTTP não foi bem-sucedida: " + response.code());
                     runOnUiThread(() ->
                             Toast.makeText(SugestoesReceitasActivity.this, "Erro do servidor: " + response.code(), Toast.LENGTH_SHORT).show()
                     );
@@ -92,7 +103,6 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(resposta);
 
-                    // Verifica se existe a chave "receitas"
                     if (!obj.has("receitas")) {
                         runOnUiThread(() ->
                                 Toast.makeText(SugestoesReceitasActivity.this, "Resposta inválida da API", Toast.LENGTH_SHORT).show()
@@ -119,7 +129,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
                     runOnUiThread(() -> receitaAdapter.notifyDataSetChanged());
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e("API_ERROR", "Erro ao interpretar resposta da API", e);
                     runOnUiThread(() ->
                             Toast.makeText(SugestoesReceitasActivity.this, "Erro ao interpretar a resposta", Toast.LENGTH_SHORT).show()
                     );

@@ -4,34 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="16dp"
+    card_view:cardElevation="8dp"
     android:layout_margin="16dp"
-    card_view:cardElevation="8dp">
+    android:layout_gravity="center">
 
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-<ImageView
-    android:id="@+id/imgCardReceita"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="2"
-    android:scaleType="centerCrop"
-    android:src="@drawable/placeholder_receita" />
+        <ImageView
+            android:id="@+id/imgCardReceita"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_receita" />
 
-<TextView
-    android:id="@+id/tvCardNomeReceita"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Nome da Receita"
-    android:textColor="@android:color/black"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:paddingTop="8dp"
-    android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvCardNomeReceita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nome da Receita"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:gravity="center" />
+    </LinearLayout>
 
-</LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>

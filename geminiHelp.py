@@ -4,11 +4,11 @@ import json
 import re
 
 # Configurações
-GEMINI_API_KEY = "AIzaSyDLymvqYHRf3QtuRt23telPZCi-ynG5GZ0"
+GEMINI_API_KEY = "AIzaSyCYrZUyHs5JEMj-tiAbDqGcmFOAvKrHsqY"
 MODEL_NAME = "models/gemini-1.5-flash"
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/{MODEL_NAME}:generateContent?key={GEMINI_API_KEY}"
 
-CSE_API_KEY = "92b8eb96bc6d8906e49d931b6ab9b0c04b5df941"
+CSE_API_KEY = "AIzaSyCd_jGMEyTI3yXCS-aGl1USnse-54GOd6g"
 CSE_CX = "951818bc7226e41c6"
 
 app = Flask(__name__)

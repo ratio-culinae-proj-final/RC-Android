@@ -32,16 +32,29 @@ public class ReceitaAdapter extends RecyclerView.Adapter<ReceitaAdapter.ReceitaV
     @NonNull
     @Override
     public ReceitaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_receita_item, parent, false);
-        return new ReceitaViewHolder(v);
+        // Garantir que o layout respeita match_parent
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_receita_item, parent, false);
+
+        // Ajuste de segurança extra para garantir que preencha a tela no ViewPager2
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        view.setLayoutParams(layoutParams);
+
+        return new ReceitaViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ReceitaViewHolder holder, int position) {
         Receita r = receitas.get(position);
         holder.nome.setText(r.getNome());
-        if (!r.getImagem().isEmpty()) {
-            Picasso.get().load(r.getImagem()).into(holder.imagem);
+
+        if (r.getImagem() != null && !r.getImagem().isEmpty()) {
+            Picasso.get()
+                    .load(r.getImagem())
+                    .placeholder(R.drawable.placeholder_receita)
+                    .error(R.drawable.placeholder_receita)
+                    .into(holder.imagem);
         } else {
             holder.imagem.setImageResource(R.drawable.placeholder_receita);
         }
