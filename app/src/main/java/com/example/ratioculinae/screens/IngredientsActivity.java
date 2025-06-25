@@ -32,20 +32,22 @@ public class IngredientsActivity extends AppCompatActivity {
 
     }
 
+    private void manipularIngredientes() {
+        ingredientes.setOnItemClickListener((parent, view, position, id) -> {
+            Ingrediente selecionado = (Ingrediente) parent.getItemAtPosition(position);
+            Intent intent = new Intent(this, EditIngredientesActivity.class);
+            intent.putExtra("ingrediente_id", selecionado.getId());
+            startActivity(intent);});
+    };
+
     private void configurarIntents() {
         adicionar.setOnClickListener(v -> {
             startActivity(new Intent(this, AddIngredientesActivity.class));
-        });
-
-        /*Como posso fazer a edição mds?*/
-        editar.setOnClickListener(v -> {
-            startActivity(new Intent(this, EditIngredientesActivity.class));
         });
     }
 
     private void inicializarIngredientes() {
         adicionar = findViewById(R.id.btnAddIngredientes);
-        editar = findViewById(R.id.btnEditIngredientes);
         ingredientes = findViewById(R.id.listIngredientes);
         db = AppDatabase.getInstance(getApplicationContext());
 
@@ -69,7 +71,9 @@ public class IngredientsActivity extends AppCompatActivity {
                                 com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
                                 listagem);
                         ingredientes.setAdapter(adapter);
+                        manipularIngredientes();
                     }
                 });
+
     }
 }

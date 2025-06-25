@@ -5,6 +5,96 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF8EE"
     tools:context=".screens.EditIngredientesActivity">
 
+
+    <TextView
+        android:id="@+id/tvTituloIngredientes3"
+        style="@style/Titulo"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="92dp"
+        android:text="Editar Item"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/barraDecorativa4"
+        android:layout_width="240dp"
+        android:layout_height="10dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes3"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes3"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloIngredientes3" />
+
+    <Button
+        android:id="@+id/btnSalvarEdit"
+        style="@style/TextButton"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Salvar"
+        app:layout_constraintEnd_toEndOf="@+id/btnDelete"
+        app:layout_constraintStart_toStartOf="@+id/btnDelete"
+        app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
+
+    <Button
+        android:id="@+id/btnCancelarEdit"
+        style="@style/TextButton"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnSalvarEdit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnSalvarEdit"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalvarEdit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/idNovoNome"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_background_gray"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/barraDecorativa4"
+        app:layout_constraintStart_toStartOf="@+id/barraDecorativa4"
+        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa4" />
+
+    <EditText
+        android:id="@+id/idNovaQuantidade"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_background_gray"
+        android:ems="10"
+        android:hint="Quantidade"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/idNovoNome"
+        app:layout_constraintStart_toStartOf="@+id/idNovoNome"
+        app:layout_constraintTop_toBottomOf="@+id/idNovoNome" />
+
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="70dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/idNovaQuantidade"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/idNovaQuantidade"
+        app:layout_constraintTop_toBottomOf="@+id/idNovaQuantidade"
+        app:srcCompat="@drawable/delete_24px" />
 </androidx.constraintlayout.widget.ConstraintLayout>
