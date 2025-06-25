@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.AddIngredientesActivity">
+
+    <TextView
+        android:id="@+id/tvTituloIngredientes2"
+        style="@style/Titulo"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="92dp"
+        android:text="Adicionar Item"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/barraDecorativa3"
+        android:layout_width="240dp"
+        android:layout_height="10dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes2"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloIngredientes2" />
+
+    <Button
+        android:id="@+id/btnSalvarAdd"
+        style="@style/TextButton"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="224dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Salvar"
+        app:layout_constraintEnd_toEndOf="@+id/idQauntidadeIngrediente"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/idQauntidadeIngrediente"
+        app:layout_constraintTop_toBottomOf="@+id/idQauntidadeIngrediente" />
+
+    <EditText
+        android:id="@+id/idNomeIngrediente"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_background_gray"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="text"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes2"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes2"
+        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa3" />
+
+    <EditText
+        android:id="@+id/idQauntidadeIngrediente"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/button_background_gray"
+        android:ems="10"
+        android:hint="Quantidade"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/idNomeIngrediente"
+        app:layout_constraintStart_toStartOf="@+id/idNomeIngrediente"
+        app:layout_constraintTop_toBottomOf="@+id/idNomeIngrediente" />
+</androidx.constraintlayout.widget.ConstraintLayout>

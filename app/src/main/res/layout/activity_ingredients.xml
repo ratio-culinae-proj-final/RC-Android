@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.IngredientsActivity">
+
+    <TextView
+        android:id="@+id/tvTituloIngredientes"
+        style="@style/Titulo"
+        android:layout_width="285dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="44dp"
+        android:text="Gerenciar lista de ingredientes"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/barraDecorativa2"
+        android:layout_width="240dp"
+        android:layout_height="10dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloIngredientes" />
+
+    <TextView
+        android:id="@+id/subtituloIngredientes"
+        style="@style/Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Lista de ingredientes"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa2" />
+
+    <ListView
+        android:id="@+id/listIngredientes"
+        android:layout_width="353dp"
+        android:layout_height="442dp"
+        android:layout_marginTop="14dp"
+        android:background="#DCDCDC"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloIngredientes"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/subtituloIngredientes" />
+
+    <Button
+        android:id="@+id/btnAddIngredientes"
+        style="@style/TextButton"
+        android:layout_width="170dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Adicionar"
+        app:layout_constraintStart_toStartOf="@+id/listIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/listIngredientes"
+        tools:ignore="HardcodedText,TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btnEditIngredientes"
+        android:layout_width="170dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Editar"
+        app:layout_constraintEnd_toEndOf="@+id/listIngredientes"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btnAddIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/listIngredientes" />
+</androidx.constraintlayout.widget.ConstraintLayout>

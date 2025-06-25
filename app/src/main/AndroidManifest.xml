@@ -15,6 +15,15 @@
         android:theme="@style/Theme.RatioCulinae"
         tools:targetApi="31">
         <activity
+            android:name=".screens.AddIngredientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.EditIngredientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.IngredientsActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.TemporizadorActivity"
             android:exported="false" />
         <activity

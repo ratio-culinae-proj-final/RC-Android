@@ -58,7 +58,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     private void configurarIntents() {
         btnIngredientes.setOnClickListener(v -> {
-            // startActivity(new Intent(this, IngredientesActivity.class));
+            startActivity(new Intent(this, IngredientsActivity.class));
         });
 
         btnGerador.setOnClickListener(v -> {
