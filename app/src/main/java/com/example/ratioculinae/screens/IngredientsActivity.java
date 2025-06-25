@@ -37,6 +37,7 @@ public class IngredientsActivity extends AppCompatActivity {
             startActivity(new Intent(this, AddIngredientesActivity.class));
         });
 
+        /*Como posso fazer a edição mds?*/
         editar.setOnClickListener(v -> {
             startActivity(new Intent(this, EditIngredientesActivity.class));
         });
