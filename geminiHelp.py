@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import json
 import re
 
-API_KEY = "SUA_API_KEY_AQUI"
+API_KEY = "AIzaSyDLymvqYHRf3QtuRt23telPZCi-ynG5GZ0"
 MODEL_NAME = "models/gemini-2.5-pro-preview-tts"
 ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/{MODEL_NAME}:generateContent?key={API_KEY}"
 

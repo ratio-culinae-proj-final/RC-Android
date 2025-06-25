@@ -57,6 +57,10 @@ public class GenerateRecipesActivity extends AppCompatActivity {
 
             if (usuario != null) {
                 carregarIngredientesDoUsuario(usuario.uuid);
+            } else {
+                runOnUiThread(() ->
+                        Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
+                );
             }
         });
     }
@@ -92,7 +96,9 @@ public class GenerateRecipesActivity extends AppCompatActivity {
             List<Ingrediente> ingredientesDoUsuario = ingredienteDao.getIngredientesByUsuario(usuario.uuid);
 
             if (ingredientesDoUsuario == null || ingredientesDoUsuario.isEmpty()) {
-                runOnUiThread(() -> Toast.makeText(this, "Nenhum ingrediente cadastrado.", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() ->
+                        Toast.makeText(this, "Nenhum ingrediente cadastrado.", Toast.LENGTH_SHORT).show()
+                );
                 return;
             }
 

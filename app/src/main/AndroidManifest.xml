@@ -22,7 +22,7 @@
 
         <meta-data
             android:name="GEMINI_API_KEY"
-            android:value="AIzaSyCYrZUyHs5JEMj-tiAbDqGcmFOAvKrHsqY" />
+            android:value="AIzaSyDLymvqYHRf3QtuRt23telPZCi-ynG5GZ0" />
 
         <activity
             android:name=".screens.AddIngredientesActivity"

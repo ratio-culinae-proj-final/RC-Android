@@ -47,6 +47,10 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         viewPager.setAdapter(receitaAdapter);
 
         String ingredientes = getIntent().getStringExtra("ingredientes");
+        if (ingredientes == null || ingredientes.isEmpty()) {
+            Toast.makeText(this, "Nenhum ingrediente recebido.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         buscarReceitas(ingredientes);
     }
 
@@ -56,7 +60,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             json.put("ingredientes", ingredientes);
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(this, "Erro ao criar JSON", Toast.LENGTH_SHORT).show();
+            runOnUiThread(() -> Toast.makeText(this, "Erro ao criar JSON", Toast.LENGTH_SHORT).show());
             return;
         }
 
@@ -79,7 +83,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()) {
                     runOnUiThread(() ->
-                            Toast.makeText(SugestoesReceitasActivity.this, "Erro do servidor", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(SugestoesReceitasActivity.this, "Erro do servidor: " + response.code(), Toast.LENGTH_SHORT).show()
                     );
                     return;
                 }
@@ -87,7 +91,16 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
                 String resposta = response.body().string();
                 try {
                     JSONObject obj = new JSONObject(resposta);
-                    JSONArray array = obj.getJSONArray("receitas");  // <-- Corrigido aqui!
+
+                    // Verifica se existe a chave "receitas"
+                    if (!obj.has("receitas")) {
+                        runOnUiThread(() ->
+                                Toast.makeText(SugestoesReceitasActivity.this, "Resposta inválida da API", Toast.LENGTH_SHORT).show()
+                        );
+                        return;
+                    }
+
+                    JSONArray array = obj.getJSONArray("receitas");
 
                     listaReceitas.clear();
                     for (int i = 0; i < array.length(); i++) {
@@ -106,10 +119,10 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
                     runOnUiThread(() -> receitaAdapter.notifyDataSetChanged());
 
                 } catch (JSONException e) {
+                    e.printStackTrace();
                     runOnUiThread(() ->
                             Toast.makeText(SugestoesReceitasActivity.this, "Erro ao interpretar a resposta", Toast.LENGTH_SHORT).show()
                     );
-                    e.printStackTrace();
                 }
             }
         });
@@ -131,18 +144,19 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         dificuldade.setText("Dificuldade: " + receita.getDificuldade());
         tempo.setText("Tempo: " + receita.getTempoPreparo());
 
-        // Ingredientes como string
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < receita.getIngredientes().length(); i++) {
-            try {
-                sb.append("• ").append(receita.getIngredientes().getString(i)).append("\n");
-            } catch (JSONException e) {
-                e.printStackTrace();
+        if (receita.getIngredientes() != null) {
+            for (int i = 0; i < receita.getIngredientes().length(); i++) {
+                try {
+                    sb.append("• ").append(receita.getIngredientes().getString(i)).append("\n");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
         ingredientes.setText(sb.toString());
 
-        if (!receita.getImagem().isEmpty()) {
+        if (receita.getImagem() != null && !receita.getImagem().isEmpty()) {
             Picasso.get().load(receita.getImagem()).into(imagem);
         } else {
             imagem.setImageResource(R.drawable.placeholder_receita);
