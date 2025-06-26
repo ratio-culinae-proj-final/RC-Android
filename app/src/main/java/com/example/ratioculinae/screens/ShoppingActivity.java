@@ -52,15 +52,14 @@ public class ShoppingActivity extends AppCompatActivity {
                     rb.setText(item.getProdutoQuantidade());
                     rb.setId(item.getId());
                     lista.addView(rb);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Compra deleteItem = new Compra(item.getProduto(), item.getQuantidade());
-                            rb.setOnClickListener(v -> {
-                                lista.removeView(rb);
-                                db.compraDAO().delete(deleteItem);
-                            });
-                        };
+                    rb.setOnClickListener(v -> {
+                        new  Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                db.compraDAO().delete(item);
+                                runOnUiThread(() -> lista.removeView(rb));
+                            }
+                        }).start();
                     });
                 }
             }
