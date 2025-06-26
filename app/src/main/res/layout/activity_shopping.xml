@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8EE"
+    tools:context=".screens.ShoppingActivity">
+
+    <View
+        android:id="@+id/barraDecorativa5"
+        android:layout_width="240dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloCompras"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloCompras"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloCompras" />
+
+    <FrameLayout
+        android:id="@+id/listaLayout"
+        android:layout_width="370dp"
+        android:layout_height="441dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvTituloCompras"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/tvTituloCompras"
+        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa5">
+
+        <RadioGroup
+            android:id="@+id/listaCompras"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/comprasProduto"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/button_background_brown"
+        android:ems="10"
+        android:hint="Produto"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/listaLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/comprasQuantidadde"
+        android:layout_width="85dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/button_background_brown"
+        android:ems="10"
+        android:hint="Quantidade"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/listaLayout"
+        app:layout_constraintStart_toEndOf="@+id/comprasProduto"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="Adicionar Item:"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/listaLayout"
+        app:layout_constraintStart_toStartOf="@+id/listaLayout"
+        app:layout_constraintTop_toBottomOf="@+id/listaLayout" />
+
+    <Button
+        android:id="@+id/comprasAdd"
+        android:layout_width="370dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Button"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/comprasQuantidadde"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/comprasProduto"
+        app:layout_constraintTop_toBottomOf="@+id/comprasQuantidadde" />
+
+    <TextView
+        android:id="@+id/tvTituloCompras"
+        style="@style/Titulo"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:text="Lista de Compras"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
