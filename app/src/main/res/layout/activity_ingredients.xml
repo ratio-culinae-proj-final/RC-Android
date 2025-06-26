@@ -10,28 +10,45 @@
     tools:context=".screens.IngredientsActivity">
 
     <!-- Título -->
+
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/rounded_orange"
+        android:contentDescription="Voltar"
+        android:src="@drawable/arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+    <!-- Barra decorativa -->
     <TextView
         android:id="@+id/tvTituloIngredientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="Gerenciar lista de ingredientes"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="48dp" />
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Barra decorativa -->
     <View
         android:id="@+id/barraDecorativa2"
         android:layout_width="330dp"
         android:layout_height="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/decorative_bar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTituloIngredientes" />
 
@@ -53,7 +70,7 @@
     <ListView
         android:id="@+id/listIngredientes"
         android:layout_width="364dp"
-        android:layout_height="374dp"
+        android:layout_height="308dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/listview_background"

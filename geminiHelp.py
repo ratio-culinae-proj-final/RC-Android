@@ -9,10 +9,9 @@ MODEL_NAME = "models/gemini-1.5-flash"
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/{MODEL_NAME}:generateContent?key={GEMINI_API_KEY}"
 
 CSE_API_KEY = "AIzaSyCd_jGMEyTI3yXCS-aGl1USnse-54GOd6g"
-CSE_CX = "951818bc7226e41c6"
+CSE_CX = "1204e613a54724f2b"
 
 app = Flask(__name__)
-
 
 def buscar_imagem_google(nome_receita):
     print(f"\n🔎 Buscando imagem para: {nome_receita}")
@@ -28,7 +27,7 @@ def buscar_imagem_google(nome_receita):
 
     try:
         resposta = requests.get(search_url, params=params)
-        print(f"📡 Requisição feita: {resposta.url}")
+        print(f"📱 Requisição feita: {resposta.url}")
         print(f"📄 Status Code: {resposta.status_code}")
         data = resposta.json()
         print(f"📦 Resposta JSON: {json.dumps(data, indent=2)}")
@@ -43,7 +42,6 @@ def buscar_imagem_google(nome_receita):
         print(f"❌ Erro ao buscar imagem: {e}")
 
     return ""
-
 
 @app.route("/sugerir_receitas", methods=["POST"])
 def sugerir_receitas():
@@ -61,8 +59,34 @@ def sugerir_receitas():
         return jsonify({"erro": "JSON inválido ou campo 'ingredientes' ausente"}), 400
 
     ingredientes = dados.get("ingredientes", "")
-    prompt = f"""
-Você é um assistente de receitas. Baseado nos ingredientes abaixo:
+    preferencias = dados.get("preferencias", "").strip()
+
+    # Prompt com ou sem preferências
+    if preferencias:
+        prompt = f"""
+Você é um assistente culinário inteligente. Com base nos ingredientes abaixo:
+
+{ingredientes}
+
+E respeitando as seguintes **preferências alimentares** do usuário: {preferencias}
+
+Gere uma **lista com 5 receitas criativas e compatíveis com essas preferências**, no seguinte formato JSON:
+[
+  {{
+    "nome": "Nome da receita",
+    "ingredientes": ["item1", "item2", "..."],
+    "modo_preparo": "Descrição do modo de preparo passo a passo.",
+    "dificuldade": "Fácil/Média/Difícil",
+    "tempo_preparo": "Tempo estimado, ex: 30 minutos",
+    "imagem": ""
+  }},
+  ...
+]
+Apenas retorne o JSON diretamente, sem explicações extras.
+"""
+    else:
+        prompt = f"""
+Você é um assistente culinário inteligente. Com base nos ingredientes abaixo:
 
 {ingredientes}
 
@@ -74,7 +98,7 @@ Gere uma **lista com 5 receitas criativas** no seguinte formato JSON:
     "modo_preparo": "Descrição do modo de preparo passo a passo.",
     "dificuldade": "Fácil/Média/Difícil",
     "tempo_preparo": "Tempo estimado, ex: 30 minutos",
-    "imagem": ""  # deixe vazio, será preenchido pelo sistema
+    "imagem": ""
   }},
   ...
 ]
@@ -91,7 +115,7 @@ Apenas retorne o JSON diretamente, sem explicações extras.
 
     response = requests.post(GEMINI_ENDPOINT, json=payload)
     print(f"\n🤖 Resposta da API Gemini Flash: {response.status_code}")
-    print(f"📄 Conteúdo: {response.text[:1000]}...")  # print resumido para não explodir no terminal
+    print(f"📄 Conteúdo: {response.text[:1000]}...")
 
     if response.status_code == 200:
         try:
@@ -116,7 +140,6 @@ Apenas retorne o JSON diretamente, sem explicações extras.
             return jsonify({"erro": "Erro ao interpretar resposta da API: " + str(e)}), 500
     else:
         return jsonify({"erro": f"Erro na requisição: {response.status_code}"}), response.status_code
-
 
 if __name__ == "__main__":
     print("🚀 Servidor Flask iniciado na porta 5000")

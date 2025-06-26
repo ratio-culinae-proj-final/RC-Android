@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +21,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
     private ListView listViewIngredientes;
     private Button btnAdicionar;
+    private ImageButton btnVoltar;
     private AppDatabase db;
 
     @Override
@@ -36,6 +38,7 @@ public class IngredientsActivity extends AppCompatActivity {
     private void inicializarComponentes() {
         listViewIngredientes = findViewById(R.id.listIngredientes);
         btnAdicionar = findViewById(R.id.btnAddIngredientes);
+        btnVoltar = findViewById(R.id.btnVoltar);
         db = AppDatabase.getInstance(getApplicationContext());
     }
 
@@ -49,6 +52,11 @@ public class IngredientsActivity extends AppCompatActivity {
             Intent intent = new Intent(this, EditIngredientesActivity.class);
             intent.putExtra("ingrediente_id", ingredienteSelecionado.getId());
             startActivity(intent);
+        });
+
+        btnVoltar.setOnClickListener(v -> {
+            Intent goBackMenu = new Intent(IngredientsActivity.this,HomePageActivity.class);
+            startActivity(goBackMenu);
         });
     }
 

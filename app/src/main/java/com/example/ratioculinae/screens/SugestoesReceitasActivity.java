@@ -3,6 +3,7 @@ package com.example.ratioculinae.screens;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +38,10 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
     private ReceitaAdapter receitaAdapter;
     private final ArrayList<Receita> listaReceitas = new ArrayList<>();
 
-    // Configura o client com timeouts definidos
     private final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
             .build();
 
     private final String urlAPI = "http://10.0.2.2:5000/sugerir_receitas";
@@ -54,19 +54,29 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPagerReceitas);
         receitaAdapter = new ReceitaAdapter(listaReceitas, this::mostrarModalDetalhes);
         viewPager.setAdapter(receitaAdapter);
+        ImageButton btnVoltar = findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(v -> finish());
 
         String ingredientes = getIntent().getStringExtra("ingredientes");
+        String preferencias = getIntent().getStringExtra("preferencias");
+
+        Log.d("SugestoesReceitas", "Preferências recebidas: " + preferencias);
+
         if (ingredientes == null || ingredientes.isEmpty()) {
             Toast.makeText(this, "Nenhum ingrediente recebido.", Toast.LENGTH_SHORT).show();
             return;
         }
-        buscarReceitas(ingredientes);
+
+        buscarReceitas(ingredientes, preferencias);
     }
 
-    private void buscarReceitas(String ingredientes) {
+    private void buscarReceitas(String ingredientes, String preferencias) {
         JSONObject json = new JSONObject();
         try {
             json.put("ingredientes", ingredientes);
+            if (preferencias != null && !preferencias.isEmpty()) {
+                json.put("preferencias", preferencias);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             runOnUiThread(() -> Toast.makeText(this, "Erro ao criar JSON", Toast.LENGTH_SHORT).show());
@@ -83,7 +93,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e("API_ERROR", "Erro na requisição HTTP", e); // Mostra a stack trace no Logcat
+                Log.e("SugestoesReceitas", "Erro na requisição HTTP", e);
                 runOnUiThread(() ->
                         Toast.makeText(SugestoesReceitasActivity.this, "Erro: " + e.getMessage(), Toast.LENGTH_LONG).show()
                 );
@@ -92,7 +102,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful()) {
-                    Log.e("API_ERROR", "Resposta HTTP não foi bem-sucedida: " + response.code());
+                    Log.e("SugestoesReceitas", "Resposta HTTP falhou: " + response.code());
                     runOnUiThread(() ->
                             Toast.makeText(SugestoesReceitasActivity.this, "Erro do servidor: " + response.code(), Toast.LENGTH_SHORT).show()
                     );
@@ -126,10 +136,16 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
                         listaReceitas.add(receita);
                     }
 
-                    runOnUiThread(() -> receitaAdapter.notifyDataSetChanged());
+                    runOnUiThread(() -> {
+                        if (listaReceitas.isEmpty()) {
+                            Toast.makeText(SugestoesReceitasActivity.this, "Nenhuma receita encontrada.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            receitaAdapter.notifyDataSetChanged();
+                        }
+                    });
 
                 } catch (JSONException e) {
-                    Log.e("API_ERROR", "Erro ao interpretar resposta da API", e);
+                    Log.e("SugestoesReceitas", "Erro ao interpretar resposta da API: " + resposta, e);
                     runOnUiThread(() ->
                             Toast.makeText(SugestoesReceitasActivity.this, "Erro ao interpretar a resposta", Toast.LENGTH_SHORT).show()
                     );
@@ -166,9 +182,10 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         }
         ingredientes.setText(sb.toString());
 
-        if (receita.getImagem() != null && !receita.getImagem().isEmpty()) {
+        if (receita.getImagem() != null && receita.getImagem().startsWith("http")) {
             Picasso.get().load(receita.getImagem()).into(imagem);
         } else {
+            Log.w("SugestoesReceitas", "Imagem inválida ou ausente para receita: " + receita.getNome());
             imagem.setImageResource(R.drawable.placeholder_receita);
         }
 

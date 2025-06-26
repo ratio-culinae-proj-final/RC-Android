@@ -9,7 +9,6 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import android.widget.ArrayAdapter;
-import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +19,7 @@ import com.example.ratioculinae.models.Ingrediente;
 import com.example.ratioculinae.models.Usuario;
 import com.example.ratioculinae.utils.UsuarioLogadoHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
@@ -49,6 +49,15 @@ public class GenerateRecipesActivity extends AppCompatActivity {
                 startActivity(new Intent(this, PreferenciasAlimentaresActivity.class)));
 
         btnBuscarReceitas.setOnClickListener(v -> buscarReceitas());
+
+        switchPreferencias.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (usuario != null) {
+                usuario.setUsarPreferencias(isChecked);
+                Executors.newSingleThreadExecutor().execute(() ->
+                        db.usuarioDAO().update(usuario)
+                );
+            }
+        });
     }
 
     private void carregarUsuario() {
@@ -57,6 +66,7 @@ public class GenerateRecipesActivity extends AppCompatActivity {
 
             if (usuario != null) {
                 carregarIngredientesDoUsuario(usuario.uuid);
+                runOnUiThread(() -> switchPreferencias.setChecked(usuario.getUsarPreferencias()));
             } else {
                 runOnUiThread(() ->
                         Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show()
@@ -106,23 +116,16 @@ public class GenerateRecipesActivity extends AppCompatActivity {
                     .map(Ingrediente::getNome)
                     .collect(Collectors.joining(", "));
 
-            boolean usarPreferencias = switchPreferencias.isChecked();
+            boolean usarPreferencias = usuario.getUsarPreferencias();
             String preferencias = null;
 
             if (usarPreferencias && usuario.getPreferenciasAlimentares() != null) {
                 preferencias = usuario.getPreferenciasAlimentares();
             }
 
-            String prompt;
-            if (preferencias != null && !preferencias.isEmpty()) {
-                prompt = ingredientesStr + ", " + preferencias;
-            } else {
-                prompt = ingredientesStr;
-            }
-
-            // Passar o prompt via Intent para SugestoesReceitasActivity
             Intent intent = new Intent(GenerateRecipesActivity.this, SugestoesReceitasActivity.class);
-            intent.putExtra("ingredientes", prompt);
+            intent.putExtra("ingredientes", ingredientesStr);
+            intent.putExtra("preferencias", preferencias);
             startActivity(intent);
         });
     }
