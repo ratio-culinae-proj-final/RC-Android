@@ -18,21 +18,18 @@
         app:layout_constraintStart_toStartOf="@+id/tvTituloCompras"
         app:layout_constraintTop_toBottomOf="@+id/tvTituloCompras" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/listaLayout"
         android:layout_width="370dp"
         android:layout_height="441dp"
         android:layout_marginTop="20dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/tvTituloCompras"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/tvTituloCompras"
         app:layout_constraintTop_toBottomOf="@+id/barraDecorativa5">
 
-        <RadioGroup
-            android:id="@+id/listaCompras"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/comprasProduto"
@@ -83,7 +80,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background_orange"
-        android:text="Button"
+        android:text="Salvar"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,5 +103,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
