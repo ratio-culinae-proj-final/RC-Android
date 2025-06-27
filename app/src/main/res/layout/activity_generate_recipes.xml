@@ -16,80 +16,98 @@
     <!-- Subtítulo -->
 
     <!-- Lista de ingredientes (mock) -->
+
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_orange"
+        android:contentDescription="Voltar"
+        android:src="@drawable/arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvVoltar"
+        style="@style/CorpoTexto"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:text="Voltar"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvTitulo"
+        style="@style/Titulo"
         android:layout_width="351dp"
         android:layout_height="33dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="30dp"
         android:text="Sugestão de receitas"
         android:textAlignment="center"
         android:textColor="#000000"
-        style="@style/Titulo"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Preferências + switch -->
-
-    <View
-        android:id="@+id/barraDecorativa"
-        android:layout_width="354dp"
-        android:layout_height="13dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/decorative_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
-
-    <!-- Botão Editar Preferências -->
-
-    <!-- Botão Buscar Receitas -->
-
-    <TextView
-        android:id="@+id/tvListaIngredientes"
-        android:layout_width="361dp"
-        android:layout_height="24dp"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBuscarReceitas"
+        style="@style/TextButtonBold"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="11dp"
-        android:textAlignment="center"
         android:layout_marginEnd="50dp"
-        android:text="Lista de ingredientes"
-        style="@style/CorpoTexto"
-        android:textColor="#000000"
-        android:textSize="16sp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Buscar receitas"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa" />
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ListView
-        android:id="@+id/listaIngredientes"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        style="@style/CorpoTexto"
-        android:background="#DDDDDD"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEditarPreferencias"
+        style="@style/TextButtonBold"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_background_gray"
+        android:text="Editar Preferências"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnBuscarReceitas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvListaIngredientes" />
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvPreferencias"
+        style="@style/CorpoTexto"
         android:layout_width="211dp"
         android:layout_height="25dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="28dp"
-        style="@style/CorpoTexto"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="40dp"
         android:text="Preferências Alimentares"
-        android:textColor="#000000"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btnEditarPreferencias"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,41 +117,58 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
         android:checked="false"
         app:layout_constraintBottom_toTopOf="@+id/btnEditarPreferencias"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnEditarPreferencias"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="20dp"
-        style="@style/TextButton"
-        android:background="@drawable/button_background_gray"
-        android:text="Editar Preferências"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnBuscarReceitas"
+    <ListView
+        android:id="@+id/listaIngredientes"
+        style="@style/CorpoTexto"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/listview_background"
+        android:divider="#B0B0B0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvListaIngredientes" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnBuscarReceitas"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
+    <TextView
+        android:id="@+id/tvListaIngredientes"
+        style="@style/CorpoTexto"
+        android:layout_width="361dp"
+        android:layout_height="24dp"
         android:layout_marginStart="50dp"
-        style="@style/TextButton"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="83dp"
-        android:background="@drawable/button_background_orange"
-        android:text="Buscar receitas"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Lista de ingredientes"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barraDecorativa" />
+
+    <View
+        android:id="@+id/barraDecorativa"
+        android:layout_width="354dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/decorative_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+    <!-- Botão Editar Preferências -->
+
+    <!-- Botão Buscar Receitas -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

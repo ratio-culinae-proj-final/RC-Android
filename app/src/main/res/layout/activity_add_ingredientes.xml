@@ -16,7 +16,7 @@
         android:text="Adicionar Item"
         android:textAlignment="center"
         android:textColor="#333"
-        android:textSize="26sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +25,13 @@
 
     <View
         android:id="@+id/barraDecorativa3"
-        android:layout_width="160dp"
-        android:layout_height="6dp"
+        android:layout_width="195dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/decorative_bar"
-        app:layout_constraintTop_toBottomOf="@id/tvTituloIngredientes2"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTituloIngredientes2" />
 
     <EditText
         android:id="@+id/idNomeIngrediente"
@@ -40,9 +40,10 @@
         android:background="@drawable/rounded_input_background"
         android:hint="Nome do ingrediente"
         android:paddingHorizontal="16dp"
+        style="@style/CorpoTexto"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/barraDecorativa3"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +57,10 @@
         android:background="@drawable/rounded_input_background"
         android:hint="Quantidade"
         android:paddingHorizontal="16dp"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:inputType="number"
         android:textColor="@color/black"
+        style="@style/CorpoTexto"
         android:textColorHint="@color/black"
         app:layout_constraintTop_toBottomOf="@id/idNomeIngrediente"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +84,7 @@
         android:id="@+id/btnSalvarAdd"
         android:layout_width="0dp"
         android:layout_height="55dp"
+        style="@style/TextButtonBold"
         android:text="Salvar"
         android:textColor="@android:color/white"
         android:textSize="16sp"
@@ -90,5 +93,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancelar"
+        style="@style/TextButtonBold"
+        android:layout_width="361dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/button_background_brown"
+        android:text="Cancelar"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalvarAdd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

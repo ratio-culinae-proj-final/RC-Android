@@ -8,14 +8,14 @@
     android:background="#FFF8EE"
     tools:context=".screens.EditIngredientesActivity">
 
-
     <TextView
         android:id="@+id/tvTituloIngredientes3"
         style="@style/Titulo"
         android:layout_width="285dp"
         android:layout_height="48dp"
         android:layout_marginTop="92dp"
-        android:text="Editar Item"
+        android:text="Editar Ingrediente"
+        android:textColor="@color/black"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -33,40 +33,17 @@
         app:layout_constraintStart_toStartOf="@+id/tvTituloIngredientes3"
         app:layout_constraintTop_toBottomOf="@+id/tvTituloIngredientes3" />
 
-    <Button
-        android:id="@+id/btnSalvarEdit"
-        style="@style/TextButton"
-        android:layout_width="353dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/button_background_orange"
-        android:text="Salvar"
-        app:layout_constraintEnd_toEndOf="@+id/btnDelete"
-        app:layout_constraintStart_toStartOf="@+id/btnDelete"
-        app:layout_constraintTop_toBottomOf="@+id/btnDelete" />
-
-    <Button
-        android:id="@+id/btnCancelarEdit"
-        style="@style/TextButton"
-        android:layout_width="353dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/button_background_orange"
-        android:text="Cancelar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnSalvarEdit"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btnSalvarEdit"
-        app:layout_constraintTop_toBottomOf="@+id/btnSalvarEdit"
-        app:layout_constraintVertical_bias="0.0" />
-
     <EditText
         android:id="@+id/idNovoNome"
         android:layout_width="353dp"
         android:layout_height="50dp"
+        style="@style/CorpoTexto"
+        android:textSize="18sp"
         android:layout_marginTop="60dp"
         android:background="@drawable/button_background_gray"
         android:ems="10"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:hint="Nome"
         android:inputType="text"
         android:paddingHorizontal="12dp"
@@ -78,11 +55,16 @@
         android:id="@+id/idNovaQuantidade"
         android:layout_width="353dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        style="@style/CorpoTexto"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button_background_gray"
         android:ems="10"
         android:hint="Quantidade"
         android:inputType="number"
+        android:paddingHorizontal="12dp"
         app:layout_constraintEnd_toEndOf="@+id/idNovoNome"
         app:layout_constraintStart_toStartOf="@+id/idNovoNome"
         app:layout_constraintTop_toBottomOf="@+id/idNovoNome" />
@@ -91,10 +73,53 @@
         android:id="@+id/btnDelete"
         android:layout_width="70dp"
         android:layout_height="55dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/idNovaQuantidade"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/idNovaQuantidade"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="79dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idNovaQuantidade"
         app:srcCompat="@drawable/delete_24px" />
+
+    <TextView
+        android:id="@+id/tvDeletar"
+        style="@style/CorpoTexto"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="53dp"
+        android:text="Deletar Ingrediente"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnSalvarEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnDelete" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSalvarEdit"
+        style="@style/TextButtonBold"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/button_background_orange"
+        android:text="Salvar"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancelarEdit"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancelarEdit"
+        style="@style/TextButtonBold"
+        android:layout_width="353dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="107dp"
+        android:background="@drawable/button_background_brown"
+        android:text="Cancelar"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

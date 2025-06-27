@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class GenerateRecipesActivity extends AppCompatActivity {
     private Switch switchPreferencias;
     private Usuario usuario;
     private AppDatabase db;
+    private ImageButton btnVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class GenerateRecipesActivity extends AppCompatActivity {
         Button btnEditarPreferencias = findViewById(R.id.btnEditarPreferencias);
         Button btnBuscarReceitas = findViewById(R.id.btnBuscarReceitas);
         ListView listaIngredientes = findViewById(R.id.listaIngredientes);
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         db = AppDatabase.getInstance(getApplicationContext());
 
@@ -49,6 +52,8 @@ public class GenerateRecipesActivity extends AppCompatActivity {
                 startActivity(new Intent(this, PreferenciasAlimentaresActivity.class)));
 
         btnBuscarReceitas.setOnClickListener(v -> buscarReceitas());
+
+        btnVoltar.setOnClickListener(v -> finish());
 
         switchPreferencias.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (usuario != null) {

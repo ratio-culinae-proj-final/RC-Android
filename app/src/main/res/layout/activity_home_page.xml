@@ -60,7 +60,7 @@
         <View
             android:id="@+id/linhaLaranja"
             android:layout_width="319dp"
-            android:layout_height="15dp"
+            android:layout_height="10dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="50dp"
@@ -87,7 +87,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnIngredientes"
-            style="@style/TextButton"
+            style="@style/TextButtonBold"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="50dp"
@@ -106,7 +106,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnGerador"
-            style="@style/TextButton"
+            style="@style/TextButtonBold"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="50dp"
@@ -125,7 +125,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnVisualizar"
-            style="@style/TextButton"
+            style="@style/TextButtonBold"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="50dp"
@@ -144,7 +144,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnTemporizador"
-            style="@style/TextButton"
+            style="@style/TextButtonBold"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="50dp"
@@ -164,7 +164,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCompras"
-            style="@style/TextButton"
+            style="@style/TextButtonBold"
             android:layout_width="300dp"
             android:layout_height="70dp"
             android:layout_marginStart="50dp"

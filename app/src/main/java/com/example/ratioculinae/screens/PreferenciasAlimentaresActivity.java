@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
 public class PreferenciasAlimentaresActivity extends AppCompatActivity {
 
     private CheckBox cbVegetariano, cbVegano, cbSemGluten, cbSemLactose, cbDiabetico;
-    private Button btnSalvar;
+    private Button btnSalvar, btnCancelar;
     private Usuario usuario;
     private AppDatabase db;
 
@@ -41,6 +41,7 @@ public class PreferenciasAlimentaresActivity extends AppCompatActivity {
         cbSemLactose = findViewById(R.id.checkboxSemLactose);
         cbDiabetico = findViewById(R.id.checkboxDiabetico);
         btnSalvar = findViewById(R.id.btnSalvarPreferencias);
+        btnCancelar = findViewById(R.id.btnCancelar);
 
         carregarUsuario();
 
@@ -49,6 +50,8 @@ public class PreferenciasAlimentaresActivity extends AppCompatActivity {
             usuario.setPreferenciasAlimentares(preferencias);
             salvarUsuario(usuario);
         });
+
+        btnCancelar.setOnClickListener(v -> finish());
     }
 
     private void carregarUsuario() {

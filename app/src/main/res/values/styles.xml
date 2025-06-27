@@ -24,4 +24,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="TextButtonBold">
+        <item name="android:fontFamily">@font/raleway_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

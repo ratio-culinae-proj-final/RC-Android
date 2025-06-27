@@ -25,6 +25,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@android:color/black" />
 
+    <TextView
+        android:id="@+id/tvVoltar"
+        style="@style/CorpoTexto"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:text="Voltar"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- Barra decorativa -->
     <TextView
         android:id="@+id/tvTituloIngredientes"
@@ -33,6 +48,7 @@
         android:layout_marginTop="88dp"
         android:text="Gerenciar lista de ingredientes"
         android:textAlignment="center"
+        style="@style/Titulo"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -43,8 +59,8 @@
 
     <View
         android:id="@+id/barraDecorativa2"
-        android:layout_width="330dp"
-        android:layout_height="8dp"
+        android:layout_width="235dp"
+        android:layout_height="10dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/decorative_bar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +75,7 @@
         android:layout_height="wrap_content"
         android:text="Lista de ingredientes"
         android:textSize="16sp"
+        style="@style/CorpoTexto"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/barraDecorativa2"
@@ -75,6 +92,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/listview_background"
         android:divider="#B0B0B0"
+        style="@style/CorpoTexto"
         android:dividerHeight="1dp"
         android:padding="8dp"
         app:layout_constraintBottom_toTopOf="@id/btnAddIngredientes"
@@ -87,6 +105,7 @@
         android:id="@+id/btnAddIngredientes"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        style="@style/TextButtonBold"
         android:layout_marginBottom="76dp"
         android:background="@drawable/button_background_orange"
         android:text="Adicionar"

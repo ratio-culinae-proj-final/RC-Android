@@ -28,7 +28,7 @@ public class AddIngredientesActivity extends AppCompatActivity {
 
     private EditText nomeInput;
     private EditText quantidadeInput;
-    private Button btnSalvar;
+    private Button btnSalvar, btnCancelar;
     private ImageButton btnMicrofone;
     private AppDatabase db;
 
@@ -47,12 +47,14 @@ public class AddIngredientesActivity extends AppCompatActivity {
         quantidadeInput = findViewById(R.id.idQauntidadeIngrediente);
         btnSalvar = findViewById(R.id.btnSalvarAdd);
         btnMicrofone = findViewById(R.id.btnMicrofone);
+        btnCancelar = findViewById(R.id.btnCancelar);
         db = AppDatabase.getInstance(getApplicationContext());
     }
 
     private void configurarListeners() {
         btnSalvar.setOnClickListener(v -> salvarIngrediente());
         btnMicrofone.setOnClickListener(v -> iniciarReconhecimentoVoz());
+        btnCancelar.setOnClickListener(v -> finish());
     }
 
     private void salvarIngrediente() {
