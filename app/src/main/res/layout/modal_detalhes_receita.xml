@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="24dp"
+    android:padding="38dp"
     android:background="@android:color/white">
 
     <LinearLayout
@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nome da Receita"
+            style="@style/Titulo"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
@@ -33,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ingredientes: ..."
+            style="@style/CorpoTexto"
             android:layout_marginTop="12dp"
             android:textColor="@android:color/black" />
 
@@ -40,6 +42,7 @@
             android:id="@+id/tvModoModal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/CorpoTexto"
             android:text="Modo de preparo: ..."
             android:layout_marginTop="12dp"
             android:textColor="@android:color/black" />
@@ -50,6 +53,7 @@
             android:layout_height="wrap_content"
             android:text="Dificuldade: ..."
             android:layout_marginTop="12dp"
+            style="@style/CorpoTexto"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -57,14 +61,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tempo: ..."
+            style="@style/CorpoTexto"
             android:layout_marginTop="12dp"
             android:textColor="@android:color/black" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnFavoritar"
-            android:layout_width="154dp"
+            style="@style/TextButtonBold"
+            android:layout_width="202dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_background_orange"
             android:text="Favoritar Receita"
             android:textColor="@color/white" />
