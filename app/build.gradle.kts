@@ -56,4 +56,6 @@ dependencies {
     implementation(libs.okhttp.v4100)
     implementation (libs.picasso)
     implementation (libs.gson)
+    implementation ("com.github.jaeryo2357:circleTimer:1.1.7")
+
 }
