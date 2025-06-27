@@ -1,177 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#FFF8EE">
 
-    <!-- Logo do chef + livro -->
-
-    <!-- Título Ratio Culinae -->
-
-    <!-- Linha laranja -->
-
-    <!-- Texto de boas-vindas -->
-
-    <!-- Subtítulo -->
-
-    <!-- Botão Gerenciar Ingredientes -->
-
-    <!-- Botão Gerador de Receitas -->
-
-    <!-- Botão Visualizar receitas salvas -->
-
-    <!-- Botão Temporizador fácil -->
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="201dp"
-        android:layout_height="153dp"
-        android:layout_marginStart="105dp"
-        android:layout_marginEnd="105dp"
-        android:src="@mipmap/ic_ratio_culinae"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textTitulo"
-        style="@style/Titulo"
-        android:layout_width="313dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:text="RATIO CULINAE"
-        android:textAlignment="center"
-        android:textColor="#8B5E3C"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
-
-    <View
-        android:id="@+id/linhaLaranja"
-        android:layout_width="319dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/decorative_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textBemVindo" />
-
-    <TextView
-        android:id="@+id/textBemVindo"
-        style="@style/CorpoTexto"
-        android:layout_width="320dp"
-        android:layout_height="81dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="50dp"
-        android:text="Bem vindo\nUsuario!"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTitulo" />
-
-    <TextView
-        android:id="@+id/textSelecione"
-        style="@style/CorpoTexto"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:text="Selecione uma das opções abaixo"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linhaLaranja" />
+        android:paddingBottom="24dp">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnIngredientes"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="23dp"
-        style="@style/TextButton"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_background_brown"
-        android:padding="12dp"
-        android:text="Gerenciar Ingredientes"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSelecione" />
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="201dp"
+            android:layout_height="153dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginEnd="105dp"
+            android:src="@mipmap/ic_ratio_culinae"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnGerador"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="50dp"
-        style="@style/TextButton"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_background_brown"
-        android:padding="12dp"
-        android:text="Gerador de receitas"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngredientes" />
+        <TextView
+            android:id="@+id/textTitulo"
+            style="@style/Titulo"
+            android:layout_width="313dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="RATIO CULINAE"
+            android:textAlignment="center"
+            android:textColor="#8B5E3C"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageLogo" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnVisualizar"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        style="@style/TextButton"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_background_brown"
-        android:padding="12dp"
-        android:text="Visualizar receitas salvas"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGerador" />
+        <TextView
+            android:id="@+id/textBemVindo"
+            style="@style/CorpoTexto"
+            android:layout_width="320dp"
+            android:layout_height="81dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="50dp"
+            android:text="Bem vindo\nUsuario!"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitulo" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnTemporizador"
-        android:layout_width="300dp"
-        style="@style/TextButton"
-        android:layout_height="70dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/button_background_brown"
-        android:padding="12dp"
-        android:text="Temporizador fácil"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVisualizar"
-        app:layout_constraintWidth_percent="0.8" />
+        <View
+            android:id="@+id/linhaLaranja"
+            android:layout_width="319dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/decorative_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textBemVindo" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textSelecione"
+            style="@style/CorpoTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Selecione uma das opções abaixo"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linhaLaranja" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnIngredientes"
+            style="@style/TextButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/button_background_brown"
+            android:padding="12dp"
+            android:text="Gerenciar Ingredientes"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textSelecione" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGerador"
+            style="@style/TextButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/button_background_brown"
+            android:padding="12dp"
+            android:text="Gerador de receitas"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnIngredientes" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnVisualizar"
+            style="@style/TextButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/button_background_brown"
+            android:padding="12dp"
+            android:text="Visualizar receitas salvas"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGerador" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnTemporizador"
+            style="@style/TextButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/button_background_brown"
+            android:padding="12dp"
+            android:text="Temporizador fácil"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnVisualizar"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCompras"
+            style="@style/TextButton"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/button_background_brown"
+            android:padding="12dp"
+            android:text="Lista de compras"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnTemporizador"
+            app:layout_constraintWidth_percent="0.8" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -16,7 +16,7 @@ import com.example.ratioculinae.models.Usuario;
 public class HomePageActivity extends AppCompatActivity {
 
     private TextView welcomeText;
-    private Button btnIngredientes, btnGerador, btnVisualizar, btnTemporizador;
+    private Button btnIngredientes, btnGerador, btnVisualizar, btnTemporizador, btnCompras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class HomePageActivity extends AppCompatActivity {
         btnVisualizar = findViewById(R.id.btnVisualizar);
         btnTemporizador = findViewById(R.id.btnTemporizador);
         btnVisualizar = findViewById(R.id.btnVisualizar);
+        btnCompras = findViewById(R.id.btnCompras);
     }
 
     private void carregarUsuarioLogado() {
@@ -72,6 +73,10 @@ public class HomePageActivity extends AppCompatActivity {
 
         btnTemporizador.setOnClickListener(v -> {
             startActivity(new Intent(this, TemporizadorActivity.class));
+        });
+
+        btnCompras.setOnClickListener(v -> {
+            startActivity(new Intent(this, ShoppingActivity.class));
         });
     }
 }
