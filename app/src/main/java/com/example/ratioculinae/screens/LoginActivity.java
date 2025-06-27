@@ -3,8 +3,10 @@ package com.example.ratioculinae.screens;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,8 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         emailField = findViewById(R.id.emailLogin);
         senhaField = findViewById(R.id.senhaLogin);
         Button loginButton = findViewById(R.id.login);
+        TextView btnCadastrar = findViewById(R.id.btnCadastrar);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        btnCadastrar.setOnClickListener(v -> {
+            Intent goCadastrar = new Intent(LoginActivity.this, CadastroActivity.class);
+            startActivity(goCadastrar);
+        });
 
         loginButton.setOnClickListener(v -> realizarLogin());
     }

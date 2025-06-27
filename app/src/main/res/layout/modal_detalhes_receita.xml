@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="38dp"
+    android:padding="25dp"
     android:background="@android:color/white">
 
     <LinearLayout
@@ -16,18 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/placeholder_receita" />
+            android:src="@drawable/placeholder_receita"
+            style="@style/ShapeAppearanceOverlay.App.CornerRounded"/>
 
         <TextView
             android:id="@+id/tvNomeModal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome da Receita"
             style="@style/Titulo"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
             android:layout_marginTop="16dp"
-            android:textColor="@android:color/black" />
+            android:text="Nome da Receita"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvIngredientesModal"

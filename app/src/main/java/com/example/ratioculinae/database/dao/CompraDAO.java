@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface CompraDAO {
     @Insert
-    void insert(Compra compra);
+    long insert(Compra compra);
 
     @Query("SELECT * FROM tab_compras")
     List<Compra> listarCompras();

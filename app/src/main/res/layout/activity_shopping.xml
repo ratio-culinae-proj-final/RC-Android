@@ -9,12 +9,41 @@
     android:background="#FFF8EE"
     tools:context=".screens.ShoppingActivity">
 
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rounded_orange"
+        android:contentDescription="Voltar"
+        android:src="@drawable/arrow_back_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/black" />
+
+    <TextView
+        android:id="@+id/tvVoltar"
+        style="@style/CorpoTexto"
+        android:layout_width="217dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:text="Voltar"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnVoltar"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvTituloCompras"
         style="@style/Titulo"
         android:layout_width="285dp"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="72dp"
         android:text="Lista de Compras"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -36,10 +65,13 @@
 
     <LinearLayout
         android:id="@+id/listaLayout"
-        android:layout_width="370dp"
-        android:layout_height="441dp"
+        android:layout_width="366dp"
+        android:layout_height="300dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
+        android:background="@drawable/listview_background"
+        android:divider="#B0B0B0"
+        style="@style/CorpoTexto"
         app:layout_constraintEnd_toEndOf="@id/tvTituloCompras"
         app:layout_constraintStart_toStartOf="@id/tvTituloCompras"
         app:layout_constraintTop_toBottomOf="@id/barraDecorativa5" />
@@ -96,17 +128,19 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/comprasAdd"
+        style="@style/TextButtonBold"
         android:layout_width="370dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/button_background_orange"
-        style="@style/TextButton"
         android:text="Salvar"
         android:textColor="@color/white"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/comprasQuantidadde"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@id/comprasProduto"
         app:layout_constraintTop_toBottomOf="@id/comprasQuantidadde"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintVertical_bias="0.074" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

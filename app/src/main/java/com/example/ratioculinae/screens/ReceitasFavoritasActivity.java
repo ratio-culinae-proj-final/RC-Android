@@ -3,6 +3,7 @@ package com.example.ratioculinae.screens;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +32,11 @@ public class ReceitasFavoritasActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_receitas_favoritas);
 
+        ImageButton btnVoltar = findViewById(R.id.btnVoltar);
         RecyclerView recyclerView = findViewById(R.id.recyclerFavoritas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        btnVoltar.setOnClickListener(v -> finish());
 
         new Thread(() -> {
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());

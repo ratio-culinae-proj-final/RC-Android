@@ -29,4 +29,9 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerRounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
 </resources>
