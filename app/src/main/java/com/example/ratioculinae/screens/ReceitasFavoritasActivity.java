@@ -65,7 +65,12 @@ public class ReceitasFavoritasActivity extends AppCompatActivity {
         Button btnRemover = dialog.findViewById(R.id.btnRemoverFavorita);
 
         nome.setText(receita.getNome());
-        modoPreparo.setText(receita.getModoPreparo());
+
+        String modo = receita.getModoPreparo();
+        String modoFormatado = modo.replaceAll("(\\d+\\s*\\.)", "\n$1").trim();
+        modoFormatado = modoFormatado.replaceFirst("^\\n", "");
+        modoPreparo.setText(modoFormatado);
+
         dificuldade.setText("Dificuldade: " + receita.getDificuldade());
         tempo.setText("Tempo: " + receita.getTempoPreparo());
 

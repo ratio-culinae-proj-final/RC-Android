@@ -75,7 +75,7 @@ Gere uma **lista com 5 receitas criativas e compatíveis com essas preferências
   {{
     "nome": "Nome da receita",
     "ingredientes": ["item1", "item2", "..."],
-    "modo_preparo": "Descrição do modo de preparo passo a passo.",
+    "modo_preparo": "Modo de preparo em etapas numeradas (1. Passo 1. 2. Passo 2. ...)",
     "dificuldade": "Fácil/Média/Difícil",
     "tempo_preparo": "Tempo estimado, ex: 30 minutos",
     "imagem": ""
@@ -95,7 +95,7 @@ Gere uma **lista com 5 receitas criativas** no seguinte formato JSON:
   {{
     "nome": "Nome da receita",
     "ingredientes": ["item1", "item2", "..."],
-    "modo_preparo": "Descrição do modo de preparo passo a passo.",
+    "modo_preparo": "Modo de preparo em etapas numeradas (1. Passo 1. 2. Passo 2. ...)",
     "dificuldade": "Fácil/Média/Difícil",
     "tempo_preparo": "Tempo estimado, ex: 30 minutos",
     "imagem": ""

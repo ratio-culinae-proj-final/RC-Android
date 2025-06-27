@@ -1,6 +1,7 @@
 package com.example.ratioculinae.screens;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -42,6 +43,8 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
     private ReceitaAdapter receitaAdapter;
     private final ArrayList<Receita> listaReceitas = new ArrayList<>();
 
+    private ProgressDialog progressDialog;
+
     private final OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(5, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
@@ -58,13 +61,12 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPagerReceitas);
         receitaAdapter = new ReceitaAdapter(listaReceitas, this::mostrarModalDetalhes);
         viewPager.setAdapter(receitaAdapter);
+
         ImageButton btnVoltar = findViewById(R.id.btnVoltar);
         btnVoltar.setOnClickListener(v -> finish());
 
         String ingredientes = getIntent().getStringExtra("ingredientes");
         String preferencias = getIntent().getStringExtra("preferencias");
-
-        Log.d("SugestoesReceitas", "Preferências recebidas: " + preferencias);
 
         if (ingredientes == null || ingredientes.isEmpty()) {
             Toast.makeText(this, "Nenhum ingrediente recebido.", Toast.LENGTH_SHORT).show();
@@ -75,6 +77,12 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
     }
 
     private void buscarReceitas(String ingredientes, String preferencias) {
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Buscando receitas...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         JSONObject json = new JSONObject();
         try {
             json.put("ingredientes", ingredientes);
@@ -83,7 +91,10 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            runOnUiThread(() -> Toast.makeText(this, "Erro ao criar JSON", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> {
+                progressDialog.dismiss();
+                Toast.makeText(this, "Erro ao criar JSON", Toast.LENGTH_SHORT).show();
+            });
             return;
         }
 
@@ -98,13 +109,16 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.e("SugestoesReceitas", "Erro na requisição HTTP", e);
-                runOnUiThread(() ->
-                        Toast.makeText(SugestoesReceitasActivity.this, "Erro: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                );
+                runOnUiThread(() -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(SugestoesReceitasActivity.this, "Erro: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                });
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                runOnUiThread(() -> progressDialog.dismiss());
+
                 if (!response.isSuccessful()) {
                     Log.e("SugestoesReceitas", "Resposta HTTP falhou: " + response.code());
                     runOnUiThread(() ->
@@ -168,15 +182,12 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         TextView dificuldade = dialog.findViewById(R.id.tvDificuldadeModal);
         TextView tempo = dialog.findViewById(R.id.tvTempoModal);
         ImageView imagem = dialog.findViewById(R.id.imgModal);
-
         Button btnFavoritar = dialog.findViewById(R.id.btnFavoritar);
 
         btnFavoritar.setOnClickListener(v -> {
             Gson gson = new Gson();
             String json = gson.toJson(receita);
-
             ReceitaFavorita favorita = new ReceitaFavorita(json);
-
             new Thread(() -> {
                 AppDatabase db = AppDatabase.getInstance(getApplicationContext());
                 db.receitaFavoritaDao().inserir(favorita);
@@ -185,9 +196,13 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
             Toast.makeText(this, "Receita favoritada!", Toast.LENGTH_SHORT).show();
         });
 
-
         nome.setText(receita.getNome());
-        modoPreparo.setText(receita.getModoPreparo());
+
+        String modo = receita.getModoPreparo();
+        String modoFormatado = modo.replaceAll("(\\d+\\s*\\.)", "\n$1").trim();
+        modoFormatado = modoFormatado.replaceFirst("^\\n", "");
+        modoPreparo.setText(modoFormatado);
+
         dificuldade.setText("Dificuldade: " + receita.getDificuldade());
         tempo.setText("Tempo: " + receita.getTempoPreparo());
 
@@ -203,6 +218,7 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         }
         ingredientes.setText(sb.toString());
 
+        // Carrega imagem
         if (receita.getImagem() != null && receita.getImagem().startsWith("http")) {
             Picasso.get().load(receita.getImagem()).into(imagem);
         } else {
