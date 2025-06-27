@@ -55,4 +55,5 @@ dependencies {
     implementation (libs.json)
     implementation(libs.okhttp.v4100)
     implementation (libs.picasso)
+    implementation (libs.gson)
 }

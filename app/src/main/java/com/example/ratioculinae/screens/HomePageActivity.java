@@ -35,6 +35,7 @@ public class HomePageActivity extends AppCompatActivity {
         btnGerador = findViewById(R.id.btnGerador);
         btnVisualizar = findViewById(R.id.btnVisualizar);
         btnTemporizador = findViewById(R.id.btnTemporizador);
+        btnVisualizar = findViewById(R.id.btnVisualizar);
     }
 
     private void carregarUsuarioLogado() {
@@ -66,7 +67,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
 
         btnVisualizar.setOnClickListener(v -> {
-            // startActivity(new Intent(this, VisualizarReceitasActivity.class));
+            startActivity(new Intent(this, ReceitasFavoritasActivity.class));
         });
 
         btnTemporizador.setOnClickListener(v -> {

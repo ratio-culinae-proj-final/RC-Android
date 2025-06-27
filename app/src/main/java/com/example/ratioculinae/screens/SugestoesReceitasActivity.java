@@ -3,6 +3,7 @@ package com.example.ratioculinae.screens;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.ratioculinae.R;
+import com.example.ratioculinae.database.AppDatabase;
 import com.example.ratioculinae.models.Receita;
+import com.example.ratioculinae.models.ReceitaFavorita;
 import com.example.ratioculinae.utils.ReceitaAdapter;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -164,6 +168,23 @@ public class SugestoesReceitasActivity extends AppCompatActivity {
         TextView dificuldade = dialog.findViewById(R.id.tvDificuldadeModal);
         TextView tempo = dialog.findViewById(R.id.tvTempoModal);
         ImageView imagem = dialog.findViewById(R.id.imgModal);
+
+        Button btnFavoritar = dialog.findViewById(R.id.btnFavoritar);
+
+        btnFavoritar.setOnClickListener(v -> {
+            Gson gson = new Gson();
+            String json = gson.toJson(receita);
+
+            ReceitaFavorita favorita = new ReceitaFavorita(json);
+
+            new Thread(() -> {
+                AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+                db.receitaFavoritaDao().inserir(favorita);
+            }).start();
+
+            Toast.makeText(this, "Receita favoritada!", Toast.LENGTH_SHORT).show();
+        });
+
 
         nome.setText(receita.getNome());
         modoPreparo.setText(receita.getModoPreparo());
