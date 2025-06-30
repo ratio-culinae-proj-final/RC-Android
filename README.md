@@ -53,7 +53,7 @@ Para rodar o aplicativo Android em ambiente de teste pelo computador:
 
 2. Caso não tenha o repositório do projeto, você pode utilizar o seguinte comando no terminal: `git clone https://github.com/ratio-culinae-proj-final/RC-Android`
 
-3. Após a instalação, abra o Android Studio, clique na opção **"Open Project"** e selecione a pasta do projeto que tenha o ícone do Android.
+3. Após a instalação, abra o Android Studio (Como Administrador), clique na opção **"Open Project"** e selecione a pasta do projeto que tenha o ícone do Android.
 
 4. Aguarde alguns instantes enquanto o Android Studio faz a instalação do projeto. Você pode visualizar o progresso pela barra azul no canto direito inferior.
 
@@ -82,7 +82,7 @@ O arquivo python que utiliza a API do Gemini para geração de receitas já est�
 
 - Arthur Guaritá Brasil
 - Giovanna Couto
-- Sanderson Machado de Oliveira
+- Sanderson Machado
 - Iuri Guimarães Pinheiro
 - Arthur Cavalcante
 
